@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lily Wealth Builder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .ticker-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .ticker {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        input {
+            padding: 12px;
+            width: 200px;
+            font-size: 16px;
+            border-radius: 25px;
+            border: none;
+            text-align: center;
+        }
+        button {
+            padding: 12px 24px;
+            margin-left: 10px;
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>💰 Lily Wealth Builder</h1>
+    <p>FRENCH - LEBANESE TAX RULES · GWB FRAMEWORK · LIVE PRICES</p>
+    <p><small>BUILT FOR HER · MANAGED BY YOU</small></p>
+
+    <div class="ticker-buttons">
+        <span class="ticker">VWRA</span>
+        <span class="ticker">SALIK</span>
+        <span class="ticker">SLDP</span>
+        <span class="ticker">VOO</span>
+        <span class="ticker">PLUG</span>
+    </div>
+
+    <div>
+        <input type="text" id="tickerInput" placeholder="Enter a ticker...">
+        <button onclick="searchTicker()">Search</button>
+    </div>
+
+    <div id="result">
+        <p>Enter a ticker to begin</p>
+    </div>
+
+    <script>
+        function searchTicker() {
+            const ticker = document.getElementById('tickerInput').value.toUpperCase();
+            const resultDiv = document.getElementById('result');
+            
+            if (ticker) {
+                resultDiv.innerHTML = `
+                    <h3>${ticker}</h3>
+                    <p>📊 Fetching live price...</p>
+                    <p>📈 GWB Analysis: Ready to calculate</p>
+                    <p>⚖️ Tax rules: French-Lebanese framework</p>
+                    <small>🔌 Live prices via API (configure in Vercel)</small>
+                `;
+            } else {
+                resultDiv.innerHTML = '<p>Please enter a ticker symbol</p>';
+            }
+        }
+
+        document.querySelectorAll('.ticker').forEach(el => {
+            el.addEventListener('click', () => {
+                document.getElementById('tickerInput').value = el.innerText;
+                searchTicker();
+            });
+        });
+    </script>
+</body>
+</html>
